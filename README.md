@@ -1,7 +1,5 @@
 "# python3-cli-makeTabularFormatFromManOutput" 
-"# python3-cli-makeTabularFormatFromManOutput" 
 
-# -*- coding:utf-8 -*-
 # python makeTabularFormatFromManOutput.py
 
    　1. motivation
