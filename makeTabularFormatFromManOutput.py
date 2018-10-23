@@ -149,7 +149,7 @@
             ③ Replace with re base.
                 I Configure the cell as one paragraph.
                 Ⅱ Replace line end with HTML line break.
-                    </ P> \ n \ s + <p [^>] +> → </ br>
+                    </p>\n\s+<p[^>]+> → </br>
             ④ → windows resume to line feed.
 [
 　　問題点１：
