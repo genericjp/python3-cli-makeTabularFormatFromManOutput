@@ -113,9 +113,83 @@
 　　　　　　　　　　　①　makeTabularFormatFromManOutput.py
 　　　　　　　　　　　②　HTMLファイルがクリップボード上に貼り付けられているので使用する。
         ]
+
+
+    Problem 1:
     
+    1) There is a problem with libreoffice.
+        (1) libreoffice deletes border = "1" and the table line disappears.
+            → It is necessary to add it before displaying the web.
+                <Table ... style = "page-break-before: always" border = "1">
+                
+        (2) If libreoffice contains Japanese, 
+            it becomes a paragraph line by line, 
+            and it becomes constitution with blank line.
+                → Configure the cell as one paragraph.
+                
+    2) Perform the following procedure.
+        (1) Create man HTML.
+                MakeTabularFormatFromManOutput.py
+                
+        (2) Addition of Japanese.
+            ① Construct lines by sentence and do google translation.
+            ② Since alphanumeric character strings may become illegal, 
+              resume to en base.
+            
+            ③ Convert statement tone.
+                PoliteWordToAssertiveOne.py
+                
+            ④ Review tone and so on to be a reasonable translation.
+            ⑤ Insert Japanese as empty cell in libreoffice as MS P Mincho.
+            Ⅰ The original English letter continues Liberation Serf.
+            
+        (3) Fix man HTML with notepad ++ as follows.
+            ① Add border = "1".
+            ② → unix Make line breaks.
+            ③ Replace with re base.
+                I Configure the cell as one paragraph.
+                Ⅱ Replace line end with HTML line break.
+                    </ P> \ n \ s + <p [^>] +> → </ br>
+            ④ → windows resume to line feed.
+[
+　　問題点１：
+
+　　１）　libreofficeに問題がある。
+　　　　（１）　libreofficeがborder="1" を削除して、　表罫線が消えてしまう。
+　　　　　　　　　→　web表示前に追加が必要。
+　　　　　　　<table ...　style="page-break-before: always" border="1">
+
+　　　　（２）　libreofficeが日本語を含むと行ごとに段落としてしまい、空行付の構成となる。
+　　　　　　　　　→　セルを一段落で構成する。
+
+　　２）　次の手順を行う。
+　　　　（１） man HTML を作成。
+　　　　　　　　　makeTabularFormatFromManOutput.py
+
+　　　　（２）　日本語の追記。
+　　　　　　①　文単位に行を構成し、google翻訳を行う。
+　　　　　　②　英数字文字列は不正になることがあるので、enベースに戻す。
+　　　　　　③　語調の変換を行う。
+　　　　　　　　　politeWordToAssertiveOne.py
+　
+　　　　　　④　妥当な翻訳になるように語調も含めレビューする。
+　　　　　　⑤　libreofficeで表の空セルにMS　P明朝として日本語を挿入する。
+　　　　　　　　ⅰ　元の英文はLiberation Serfを継続させる。
+
+　　　　（３）　notepad++でman HTMLを下記手順で修正する。
+　　　　　　①　border="1"　を追加する。
+　　　　　　②　→ unix 改行とする。
+　　　　　　③　正規表現ベースで置換する。
+　　　　　　　　　ⅰ　セルを一段落で構成する。
+　　　　　　　　　ⅱ　行末はHTML改行に置き換える。
+　　　　　　　　　　　</p>\n\s+<p[^>]+> → </br>
+
+　　　　　　④　→　windows　改行に戻す。
+]
+
  History
-     2018/10/22 22:00 (JST,UTC+9h)  v1.0.0 by ShozoNamikawa
+    2018/10/24 2:25 (JST,UTC+9h)  v1.0.1 add Problem 1 procedure: by ShozoNamikawa
+    2018/10/22 22:00 (JST,UTC+9h)  v1.0.0 by ShozoNamikawa
     
 """
 
